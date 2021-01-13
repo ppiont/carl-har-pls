@@ -13,6 +13,7 @@ Created on Wed Jan 13 21:59:41 2021.
 
 import numpy as np
 
+
 def auto(x):
     """Compute column-wise mean center and scale to unit variance."""
     return (x - np.mean(x, axis=0)) / np.std(x, axis=0)
