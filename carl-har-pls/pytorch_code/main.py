@@ -56,7 +56,7 @@ X2_case = False # Train or load ANN for X2 case
 if X1_case:
     ANN_MSE_X1 = []
     ANN_std_X1 = []
-    for num_layers in [1,2,3]:
+    for num_layers in [1]:
 
         layer_score_X1 = []
 
@@ -109,6 +109,7 @@ if X1_case:
                                                                    print_progress=False)
 
                 model.load_state_dict(model_state_dict)
+                model.eval()
 
                 # Save weights
                 if save_weights:
@@ -197,6 +198,8 @@ if X2_case:
                                                                    patience=patience,
                                                                    print_progress=False)
 
+                model.load_state_dict(model_state_dict)
+                model.eval()
 
                 # Save weights
                 if save_weights:
@@ -282,7 +285,7 @@ plt.errorbar([1,2,3],PLS_MSE_X2,yerr=PLS_std_X2,linewidth=3,label='X2 PLS')
 #plt.errorbar([1,2,3],ridge_MSE_X1,yerr=ridge_std_X1,linewidth=3,label='X1 Ridge')
 #plt.errorbar([1,2,3],ridge_MSE_X2,yerr=ridge_std_X2,linewidth=3,label='X2 Ridge')
 if X1_case:
-    plt.errorbar([1,2,3],ANN_MSE_X1,yerr=ANN_std_X1,linewidth=3,label='X1 ANN')
+    plt.errorbar([1],ANN_MSE_X1,yerr=ANN_std_X1,linewidth=3,label='X1 ANN')
 if X2_case:
     plt.errorbar([1,2,3],ANN_MSE_X2,yerr=ANN_std_X2,linewidth=3,label='X2 ANN')
 plt.grid()
